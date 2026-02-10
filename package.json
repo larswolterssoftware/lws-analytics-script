@@ -1,6 +1,6 @@
 {
     "name": "@lws-analytics/script",
-    "version": "1.0.0",
+    "version": "1.1.1",
     "description": "TypeScript types and utilities for LWS Analytics",
     "main": "dist/index.js",
     "module": "dist/index.mjs",

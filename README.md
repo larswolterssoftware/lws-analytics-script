@@ -4,7 +4,47 @@ A complete analytics SDK for LWS Analytics. Works with React, Vue, Next.js, and 
 
 **No external script tag required** - just install the package and start tracking.
 
-## Installation
+## CDN (HTML, WordPress, etc.)
+
+No build tools needed — just add this to your HTML:
+
+```html
+<script>
+    window.LWS_ANALYTICS_SITE_ID = 'your-site-id';
+    window.LWS_ANALYTICS_ENDPOINT =
+        'https://dashboard.lws-analytics.eu/api/track';
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@lws-analytics/script/dist/script.js"></script>
+```
+
+That's it! Page views, SPA navigation, and `data-lwsa-event` click tracking all work automatically.
+
+You can also enable debug mode:
+
+```html
+<script>
+    window.LWS_ANALYTICS_SITE_ID = 'your-site-id';
+    window.LWS_ANALYTICS_ENDPOINT =
+        'https://dashboard.lws-analytics.eu/api/track';
+    window.LWS_ANALYTICS_DEBUG = true;
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@lws-analytics/script/dist/script.js"></script>
+```
+
+To track custom events from your own scripts:
+
+```html
+<script>
+    // Using the shorthand
+    window.lwsa('button_click');
+
+    // Or the full API
+    window.LwsAnalytics.trackCustomEvent('button_click');
+    window.LwsAnalytics.trackPageView();
+</script>
+```
+
+## Installation (npm)
 
 ```bash
 npm install @lws-analytics/script
