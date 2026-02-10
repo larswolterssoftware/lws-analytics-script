@@ -1,5 +1,8 @@
 # @lws-analytics/script
 
+![NPM Version](https://img.shields.io/npm/v/%40lws-analytics%2Fscript)
+![NPM License](https://img.shields.io/npm/l/%40lws-analytics%2Fscript)
+
 A robust SDK for LWS Analytics. Works with React, Vue, Next.js, and any JavaScript/TypeScript project.
 
 **No external script tag required** - just install the package and start tracking.
