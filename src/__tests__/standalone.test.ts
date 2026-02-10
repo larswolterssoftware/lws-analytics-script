@@ -1,11 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { getInstance } from '../index';
-
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
-
-const DEFAULT_ENDPOINT = 'https://dashboard.lws-analytics.eu/api/track';
+import { getInstance, DEFAULT_ENDPOINT } from '../index';
 
 function setWindowGlobals(
     overrides: Partial<{

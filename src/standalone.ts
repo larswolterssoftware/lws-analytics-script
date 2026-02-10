@@ -1,6 +1,4 @@
-import { init } from './index';
-
-const DEFAULT_ENDPOINT = 'https://dashboard.lws-analytics.eu/api/track';
+import { init, DEFAULT_ENDPOINT } from './index';
 
 (() => {
     const siteId = window.LWS_ANALYTICS_SITE_ID;
@@ -10,7 +8,7 @@ const DEFAULT_ENDPOINT = 'https://dashboard.lws-analytics.eu/api/track';
     if (!siteId) {
         if (debug) {
             console.warn(
-                '[LWS Analytics] No identifier configured. Set window.LWS_ANALYTICS_SITE_ID before loading the script',
+                '[LWS Analytics] No identifier configured -- set window.LWS_ANALYTICS_SITE_ID before loading the script',
             );
         }
         return;

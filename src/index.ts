@@ -1,5 +1,7 @@
 /// <reference path="../global.d.ts" />
 
+export const DEFAULT_ENDPOINT = 'https://dashboard.lws-analytics.eu/api/track';
+
 export interface LwsAnalyticsConfig {
     /**
      * Site identifier (required)
@@ -7,9 +9,9 @@ export interface LwsAnalyticsConfig {
     siteId: string;
 
     /**
-     * Analytics endpoint URL (required)
+     * Analytics endpoint URL (default: https://dashboard.lws-analytics.eu/api/track)
      */
-    endpoint: string;
+    endpoint?: string;
 
     /**
      * Enable debug mode
@@ -230,14 +232,11 @@ export function init(options: LwsAnalyticsConfig): LwsAnalyticsInstance {
 
     // Validate config
     if (!options.siteId) {
-        console.warn('[LWS Analytics] No siteId configured');
+        console.warn('[LWS Analytics] No site ID configured');
     }
-    if (!options.endpoint) {
-        console.warn('[LWS Analytics] No endpoint configured');
-    }
-
     // Set config with defaults
     config = {
+        endpoint: DEFAULT_ENDPOINT,
         trackPageViewOnInit: true,
         trackSpaNavigation: true,
         trackClicks: true,

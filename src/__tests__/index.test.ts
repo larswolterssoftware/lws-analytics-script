@@ -104,19 +104,19 @@ describe('init()', () => {
 
     it('warns when siteId is missing', () => {
         const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-        init({ siteId: '', endpoint: 'https://example.com/api/track' });
+        init({ siteId: '' });
 
         expect(warnSpy).toHaveBeenCalledWith(
-            expect.stringContaining('No siteId configured'),
+            expect.stringContaining('No site ID configured'),
         );
     });
 
-    it('warns when endpoint is missing', () => {
-        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-        init({ siteId: 'test', endpoint: '' });
+    it('uses the default endpoint when none is provided', () => {
+        init({ siteId: 'test-site' });
 
-        expect(warnSpy).toHaveBeenCalledWith(
-            expect.stringContaining('No endpoint configured'),
+        expect(fetch).toHaveBeenCalledWith(
+            'https://dashboard.lws-analytics.eu/api/track',
+            expect.any(Object),
         );
     });
 });
@@ -530,11 +530,10 @@ describe('edge cases', () => {
         });
     });
 
-    it('does not send payload when endpoint is not configured', () => {
+    it('does not send payload when endpoint is explicitly set to empty string', () => {
         const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
-        // Init with empty endpoint — the warn about missing endpoint fires,
-        // but we still get an instance
+        // Init with empty endpoint — overrides the default
         init({ siteId: 'test', endpoint: '' });
 
         // Reset fetch mock to only count calls after init

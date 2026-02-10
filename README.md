@@ -48,10 +48,7 @@ npm install @lws-analytics/script
 import { init, trackEvent } from '@lws-analytics/script';
 
 // Initialize once in your app entry point
-init({
-    siteId: 'your-site-id',
-    endpoint: 'https://dashboard.lws-analytics.eu/api/track',
-});
+init({ siteId: 'your-site-id' });
 
 // Track custom events anywhere in your app
 trackEvent('button_click');
@@ -73,10 +70,7 @@ trackEvent('button_click');
 import { init } from '@lws-analytics/script';
 
 // Initialize once at app startup
-init({
-    siteId: 'your-site-id',
-    endpoint: 'https://dashboard.lws-analytics.eu/api/track',
-});
+init({ siteId: 'your-site-id' });
 
 export default function RootLayout({ children }) {
     return (
@@ -124,10 +118,7 @@ import { init } from '@lws-analytics/script';
 
 export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
-        init({
-            siteId: 'your-site-id',
-            endpoint: 'https://dashboard.lws-analytics.eu/api/track',
-        });
+        init({ siteId: 'your-site-id' });
     }, []);
 
     return <>{children}</>;
@@ -155,14 +146,14 @@ export default function RootLayout({ children }) {
 
 Initialize the analytics SDK. Call this once at app startup.
 
-| Parameter                    | Type      | Default | Description                                     |
-| ---------------------------- | --------- | ------- | ----------------------------------------------- |
-| `config.siteId`              | `string`  | -       | Your site identifier (required)                 |
-| `config.endpoint`            | `string`  | -       | The analytics endpoint URL (required)           |
-| `config.debug`               | `boolean` | `false` | Enable debug logging                            |
-| `config.trackPageViewOnInit` | `boolean` | `true`  | Automatically track page view on init           |
-| `config.trackSpaNavigation`  | `boolean` | `true`  | Track page views on SPA navigation              |
-| `config.trackClicks`         | `boolean` | `true`  | Track clicks on elements with `data-lwsa-event` |
+| Parameter                    | Type      | Default                                          | Description                                     |
+| ---------------------------- | --------- | ------------------------------------------------ | ----------------------------------------------- |
+| `config.siteId`              | `string`  | -                                                | Your site identifier (required)                 |
+| `config.endpoint`            | `string`  | `'https://dashboard.lws-analytics.eu/api/track'` | The analytics endpoint URL                      |
+| `config.debug`               | `boolean` | `false`                                          | Enable debug logging                            |
+| `config.trackPageViewOnInit` | `boolean` | `true`                                           | Automatically track page view on init           |
+| `config.trackSpaNavigation`  | `boolean` | `true`                                           | Track page views on SPA navigation              |
+| `config.trackClicks`         | `boolean` | `true`                                           | Track clicks on elements with `data-lwsa-event` |
 
 **Returns:** `LwsAnalyticsInstance` with `trackPageView()`, `trackEvent()`, and `destroy()` methods.
 
