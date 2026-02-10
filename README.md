@@ -1,6 +1,6 @@
 # @lws-analytics/script
 
-A complete analytics SDK for LWS Analytics. Works with React, Vue, Next.js, and any JavaScript/TypeScript project.
+A robust SDK for LWS Analytics. Works with React, Vue, Next.js, and any JavaScript/TypeScript project.
 
 **No external script tag required** - just install the package and start tracking.
 
