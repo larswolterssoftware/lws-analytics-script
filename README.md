@@ -73,7 +73,7 @@ function MyButton() {
 </button>
 
 <a href="/pricing" data-lwsa-event="pricing_link_clicked">
-    View pricing
+    See pricing
 </a>
 ```
 
