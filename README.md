@@ -68,8 +68,13 @@ function MyButton() {
 
 ```tsx
 // Clicks are automatically tracked
-<button data-lwsa-event="create_account_clicked">Create account</button>
-<a href="/pricing" data-lwsa-event="pricing_link_clicked">View pricing</a>
+<button data-lwsa-event="create_account_clicked">
+    Create account
+</button>
+
+<a href="/pricing" data-lwsa-event="pricing_link_clicked">
+    View pricing
+</a>
 ```
 
 ## Next.js example
