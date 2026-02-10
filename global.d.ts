@@ -3,7 +3,7 @@
  *
  * This file augments the global Window interface with LWS Analytics types.
  * Include this file in your tsconfig.json to get type support for the global
- * window.lwsa() function and window.LwsAnalytics object.
+ * window.LwsAnalytics object.
  *
  * In your tsconfig.json, add:
  * {
@@ -50,19 +50,7 @@ declare global {
          * LWS Analytics API object
          */
         LwsAnalytics?: LwsAnalyticsApi;
-
-        /**
-         * Track a custom analytics event
-         * @param eventName - The name of the event to track
-         */
-        lwsa?: (eventName: string) => void;
     }
-
-    /**
-     * Track a custom analytics event (global function)
-     * @param eventName - The name of the event to track
-     */
-    var lwsa: ((eventName: string) => void) | undefined;
 }
 
 export {};

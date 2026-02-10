@@ -68,13 +68,12 @@ describe('init()', () => {
         expect(getInstance()).toBe(analytics);
     });
 
-    it('exposes global window.LwsAnalytics and window.lwsa', () => {
+    it('exposes global window.LwsAnalytics', () => {
         initAndReturn();
 
         expect(window.LwsAnalytics).toBeDefined();
         expect(window.LwsAnalytics!.trackPageView).toBeTypeOf('function');
         expect(window.LwsAnalytics!.trackCustomEvent).toBeTypeOf('function');
-        expect(window.lwsa).toBeTypeOf('function');
     });
 
     it('sends an initial page view by default', () => {

@@ -5,6 +5,8 @@ import { getInstance } from '../index';
 // Helpers
 // ---------------------------------------------------------------------------
 
+const DEFAULT_ENDPOINT = 'https://dashboard.lws-analytics.eu/api/track';
+
 function setWindowGlobals(
     overrides: Partial<{
         siteId: string;
@@ -14,13 +16,14 @@ function setWindowGlobals(
 ) {
     const defaults = {
         siteId: 'test-site',
-        endpoint: 'https://example.com/api/track',
         debug: false,
     };
     const config = { ...defaults, ...overrides };
 
     window.LWS_ANALYTICS_SITE_ID = config.siteId;
-    window.LWS_ANALYTICS_ENDPOINT = config.endpoint;
+    if (config.endpoint) {
+        window.LWS_ANALYTICS_ENDPOINT = config.endpoint;
+    }
     window.LWS_ANALYTICS_DEBUG = config.debug;
 }
 
@@ -29,7 +32,6 @@ function clearWindowGlobals() {
     delete window.LWS_ANALYTICS_ENDPOINT;
     delete window.LWS_ANALYTICS_DEBUG;
     delete window.LwsAnalytics;
-    delete window.lwsa;
 }
 
 /**
@@ -71,7 +73,6 @@ describe('standalone script', () => {
 
         expect(getInstance()).not.toBeNull();
         expect(window.LwsAnalytics).toBeDefined();
-        expect(window.lwsa).toBeTypeOf('function');
     });
 
     it('sends an initial page view on load', async () => {
@@ -87,7 +88,18 @@ describe('standalone script', () => {
         expect(body.identifier).toBe('test-site');
     });
 
-    it('uses the configured endpoint', async () => {
+    it('uses the default endpoint when none is configured', async () => {
+        setWindowGlobals();
+
+        await loadStandalone();
+
+        expect(fetch).toHaveBeenCalledWith(
+            DEFAULT_ENDPOINT,
+            expect.any(Object),
+        );
+    });
+
+    it('allows overriding the endpoint', async () => {
         setWindowGlobals({
             endpoint: 'https://custom.example.com/track',
         });
@@ -108,15 +120,6 @@ describe('standalone script', () => {
 describe('standalone script — missing config', () => {
     it('does not initialize when siteId is missing', async () => {
         setWindowGlobals({ siteId: '' });
-
-        await loadStandalone();
-
-        expect(getInstance()).toBeNull();
-        expect(fetch).not.toHaveBeenCalled();
-    });
-
-    it('does not initialize when endpoint is missing', async () => {
-        setWindowGlobals({ endpoint: '' });
 
         await loadStandalone();
 
@@ -151,19 +154,6 @@ describe('standalone script — debug mode', () => {
         );
     });
 
-    it('warns about missing endpoint when debug is enabled', async () => {
-        window.LWS_ANALYTICS_SITE_ID = 'test-site';
-        window.LWS_ANALYTICS_DEBUG = true;
-        // No endpoint set
-        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-
-        await loadStandalone();
-
-        expect(warnSpy).toHaveBeenCalledWith(
-            expect.stringContaining('No endpoint configured'),
-        );
-    });
-
     it('does not warn when debug is disabled', async () => {
         // No globals set, debug is off (default)
         const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
@@ -179,23 +169,6 @@ describe('standalone script — debug mode', () => {
 // ---------------------------------------------------------------------------
 
 describe('standalone script — global API', () => {
-    it('exposes window.lwsa() that tracks custom events', async () => {
-        setWindowGlobals();
-
-        await loadStandalone();
-
-        (fetch as ReturnType<typeof vi.fn>).mockClear();
-
-        window.lwsa!('button_click');
-
-        expect(fetch).toHaveBeenCalledTimes(1);
-        const body = JSON.parse(
-            (fetch as ReturnType<typeof vi.fn>).mock.calls[0][1].body,
-        );
-        expect(body.type).toBe('custom');
-        expect(body.name).toBe('button_click');
-    });
-
     it('exposes window.LwsAnalytics.trackPageView()', async () => {
         setWindowGlobals();
 

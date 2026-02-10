@@ -314,8 +314,6 @@ export function init(options: LwsAnalyticsConfig): LwsAnalyticsInstance {
         trackPageView: trackPageViewInternal,
         trackCustomEvent: trackEventInternal,
     };
-    window.lwsa = trackEventInternal;
-
     log('Initialized with config:', config);
 
     return instance;

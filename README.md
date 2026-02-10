@@ -11,8 +11,6 @@ No build tools needed — just add this to your HTML:
 ```html
 <script>
     window.LWS_ANALYTICS_SITE_ID = 'your-site-id';
-    window.LWS_ANALYTICS_ENDPOINT =
-        'https://dashboard.lws-analytics.eu/api/track';
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@lws-analytics/script/dist/script.js"></script>
 ```
@@ -24,8 +22,6 @@ You can also enable debug mode:
 ```html
 <script>
     window.LWS_ANALYTICS_SITE_ID = 'your-site-id';
-    window.LWS_ANALYTICS_ENDPOINT =
-        'https://dashboard.lws-analytics.eu/api/track';
     window.LWS_ANALYTICS_DEBUG = true;
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@lws-analytics/script/dist/script.js"></script>
@@ -35,10 +31,6 @@ To track custom events from your own scripts:
 
 ```html
 <script>
-    // Using the shorthand
-    window.lwsa('button_click');
-
-    // Or the full API
     window.LwsAnalytics.trackCustomEvent('button_click');
     window.LwsAnalytics.trackPageView();
 </script>
@@ -211,7 +203,7 @@ If you're using the external script instead of this package, you can still get T
 Then use the global functions:
 
 ```typescript
-window.lwsa?.('button_click');
+window.LwsAnalytics?.trackCustomEvent('button_click');
 window.LwsAnalytics?.trackPageView();
 ```
 
