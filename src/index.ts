@@ -228,7 +228,7 @@ function teardownSpaTracking(): void {
  *
  * const analytics = init({
  *     siteId: 'your-site-id',
- *     endpoint: 'https://analytics.example.com/collect',
+ *     endpoint: 'https://dashboard.lws-analytics.eu/api/track',
  * });
  *
  * // Track custom events

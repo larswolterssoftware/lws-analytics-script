@@ -10,7 +10,7 @@ A complete analytics SDK for LWS Analytics. Works with React, Vue, Next.js, and 
 npm install @lws-analytics/script
 ```
 
-## Quick Start
+## Quick start
 
 ```typescript
 import { init, trackEvent } from '@lws-analytics/script';
@@ -18,7 +18,7 @@ import { init, trackEvent } from '@lws-analytics/script';
 // Initialize once in your app entry point
 init({
     siteId: 'your-site-id',
-    endpoint: 'https://your-analytics-endpoint.com/collect',
+    endpoint: 'https://dashboard.lws-analytics.eu/api/track',
 });
 
 // Track custom events anywhere in your app
@@ -34,7 +34,7 @@ trackEvent('button_click');
 - ✅ **Lightweight** - No dependencies
 - ✅ **Privacy-friendly** - No cookies, uses localStorage for client ID
 
-## React Example
+## React example
 
 ```tsx
 // app/layout.tsx or index.tsx
@@ -43,7 +43,7 @@ import { init } from '@lws-analytics/script';
 // Initialize once at app startup
 init({
     siteId: 'your-site-id',
-    endpoint: 'https://your-analytics-endpoint.com/collect',
+    endpoint: 'https://dashboard.lws-analytics.eu/api/track',
 });
 
 export default function RootLayout({ children }) {
@@ -64,7 +64,7 @@ function MyButton() {
 }
 ```
 
-### Using data attributes (no code required)
+### Using data attributes
 
 ```tsx
 // Clicks are automatically tracked
@@ -72,7 +72,7 @@ function MyButton() {
 <a href="/pricing" data-lwsa-event="pricing_link_clicked">View Pricing</a>
 ```
 
-## Next.js Example
+## Next.js example
 
 ```tsx
 // app/providers.tsx
@@ -85,7 +85,7 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         init({
             siteId: 'your-site-id',
-            endpoint: 'https://your-analytics-endpoint.com/collect',
+            endpoint: 'https://dashboard.lws-analytics.eu/api/track',
         });
     }, []);
 
@@ -108,7 +108,7 @@ export default function RootLayout({ children }) {
 }
 ```
 
-## API Reference
+## API reference
 
 ### `init(config)`
 
@@ -145,7 +145,7 @@ Returns `true` if analytics is initialized.
 
 Returns the current analytics instance, or `null` if not initialized.
 
-## Using Global Types (Alternative)
+## Using global types (alternative)
 
 If you're using the external script instead of this package, you can still get TypeScript support:
 
