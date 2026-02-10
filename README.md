@@ -47,7 +47,11 @@ init({
 });
 
 export default function RootLayout({ children }) {
-    return <html><body>{children}</body></html>;
+    return (
+        <html>
+            <body>{children}</body>
+        </html>
+    );
 }
 ```
 
@@ -120,7 +124,7 @@ export default function RootLayout({ children }) {
 Initialize the analytics SDK. Call this once at app startup.
 
 | Parameter                    | Type      | Default | Description                                     |
-|------------------------------|-----------|---------|-------------------------------------------------|
+| ---------------------------- | --------- | ------- | ----------------------------------------------- |
 | `config.siteId`              | `string`  | -       | Your site identifier (required)                 |
 | `config.endpoint`            | `string`  | -       | The analytics endpoint URL (required)           |
 | `config.debug`               | `boolean` | `false` | Enable debug logging                            |
@@ -135,7 +139,7 @@ Initialize the analytics SDK. Call this once at app startup.
 Track a custom event.
 
 | Parameter   | Type     | Description           |
-|-------------|----------|-----------------------|
+| ----------- | -------- | --------------------- |
 | `eventName` | `string` | The name of the event |
 
 ### `trackPageView()`
