@@ -21,8 +21,9 @@
         "dist",
         "global.d.ts"
     ],
+    "standalone": "dist/script.js",
     "scripts": {
-        "build": "tsup src/index.ts --format cjs,esm --dts",
+        "build": "tsup src/index.ts --format cjs,esm --dts && tsup src/standalone.ts --format iife --minify --out-dir dist && mv dist/standalone.global.js dist/script.js",
         "test": "vitest run",
         "test:watch": "vitest",
         "test:coverage": "vitest run --coverage",
