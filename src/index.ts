@@ -1,10 +1,3 @@
-/**
- * LWS Analytics TypeScript SDK
- *
- * A complete analytics solution that can be used directly in React/Vue/etc.
- * No external script tag required.
- */
-
 /// <reference path="../global.d.ts" />
 
 export interface LwsAnalyticsConfig {
@@ -216,25 +209,7 @@ function teardownSpaTracking(): void {
     window.removeEventListener('popstate', handlePopState);
 }
 
-/**
- * Initialize LWS Analytics
- *
- * @param options - Configuration options
- * @returns Analytics instance with tracking methods
- *
- * @example
- * ```typescript
- * import { init } from '@lws-analytics/script';
- *
- * const analytics = init({
- *     siteId: 'your-site-id',
- *     endpoint: 'https://dashboard.lws-analytics.eu/api/track',
- * });
- *
- * // Track custom events
- * analytics.trackEvent('button_click');
- * ```
- */
+// Initialize LWS Analytics
 export function init(options: LwsAnalyticsConfig): LwsAnalyticsInstance {
     if (typeof window === 'undefined') {
         console.warn(
