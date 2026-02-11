@@ -1,5 +1,6 @@
 # @lws-analytics/script
 
+![Tests](https://github.com/lws-analytics/script/actions/workflows/tests.yml/badge.svg)
 ![NPM Version](https://img.shields.io/npm/v/%40lws-analytics%2Fscript)
 ![NPM License](https://img.shields.io/npm/l/%40lws-analytics%2Fscript)
 
