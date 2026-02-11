@@ -9,11 +9,6 @@ export interface LwsAnalyticsConfig {
     siteId: string;
 
     /**
-     * Analytics endpoint URL (default: https://dashboard.lws-analytics.eu/api/track)
-     */
-    endpoint?: string;
-
-    /**
      * Enable debug mode
      */
     debug?: boolean;
@@ -124,14 +119,9 @@ function buildPayload(type: string, name: string): Record<string, unknown> {
 }
 
 function sendPayload(payload: Record<string, unknown>): void {
-    if (!config?.endpoint) {
-        warn('No endpoint configured');
-        return;
-    }
-
     log('Sending payload:', payload);
 
-    fetch(config.endpoint, {
+    fetch(DEFAULT_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -236,7 +226,6 @@ export function init(options: LwsAnalyticsConfig): LwsAnalyticsInstance {
     }
     // Set config with defaults
     config = {
-        endpoint: DEFAULT_ENDPOINT,
         trackPageViewOnInit: true,
         trackSpaNavigation: true,
         trackClicks: true,
