@@ -4,7 +4,6 @@ import { getInstance, DEFAULT_ENDPOINT } from '../index';
 function setWindowGlobals(
     overrides: Partial<{
         siteId: string;
-        endpoint: string;
         debug: boolean;
     }> = {},
 ) {
@@ -15,15 +14,11 @@ function setWindowGlobals(
     const config = { ...defaults, ...overrides };
 
     window.LWS_ANALYTICS_SITE_ID = config.siteId;
-    if (config.endpoint) {
-        window.LWS_ANALYTICS_ENDPOINT = config.endpoint;
-    }
     window.LWS_ANALYTICS_DEBUG = config.debug;
 }
 
 function clearWindowGlobals() {
     delete window.LWS_ANALYTICS_SITE_ID;
-    delete window.LWS_ANALYTICS_ENDPOINT;
     delete window.LWS_ANALYTICS_DEBUG;
     delete window.LwsAnalytics;
 }
@@ -89,19 +84,6 @@ describe('standalone script', () => {
 
         expect(fetch).toHaveBeenCalledWith(
             DEFAULT_ENDPOINT,
-            expect.any(Object),
-        );
-    });
-
-    it('allows overriding the endpoint', async () => {
-        setWindowGlobals({
-            endpoint: 'https://custom.example.com/track',
-        });
-
-        await loadStandalone();
-
-        expect(fetch).toHaveBeenCalledWith(
-            'https://custom.example.com/track',
             expect.any(Object),
         );
     });

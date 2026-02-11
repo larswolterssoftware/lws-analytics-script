@@ -15,7 +15,6 @@ import {
 
 const defaultConfig: LwsAnalyticsConfig = {
     siteId: 'test-site',
-    endpoint: 'https://example.com/api/track',
 };
 
 function initAndReturn(overrides: Partial<LwsAnalyticsConfig> = {}) {
@@ -232,7 +231,7 @@ describe('payload structure', () => {
         trackEvent('test_event');
 
         expect(fetch).toHaveBeenCalledWith(
-            'https://example.com/api/track',
+            'https://dashboard.lws-analytics.eu/api/track',
             expect.objectContaining({
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -528,20 +527,5 @@ describe('edge cases', () => {
                 expect.any(Error),
             );
         });
-    });
-
-    it('does not send payload when endpoint is explicitly set to empty string', () => {
-        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-
-        // Init with empty endpoint — overrides the default
-        init({ siteId: 'test', endpoint: '' });
-
-        // Reset fetch mock to only count calls after init
-        (fetch as ReturnType<typeof vi.fn>).mockClear();
-
-        trackEvent('test');
-
-        // fetch should not be called because endpoint is empty
-        expect(fetch).not.toHaveBeenCalled();
     });
 });

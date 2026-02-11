@@ -7,7 +7,7 @@ import { init } from './index';
     if (!siteId) {
         if (debug) {
             console.warn(
-                '[LWS Analytics] No identifier configured, please set window.LWS_ANALYTICS_SITE_ID before loading the script',
+                '[LWS Analytics] No identifier configured, set window.LWS_ANALYTICS_SITE_ID before loading the script',
             );
         }
         return;
