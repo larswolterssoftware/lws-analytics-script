@@ -149,14 +149,13 @@ export default function RootLayout({ children }) {
 
 Initialize the analytics SDK. Call this once at app startup.
 
-| Parameter                    | Type      | Default                                          | Description                                     |
-| ---------------------------- | --------- | ------------------------------------------------ | ----------------------------------------------- |
-| `config.siteId`              | `string`  | -                                                | Your site identifier (required)                 |
-| `config.endpoint`            | `string`  | `'https://dashboard.lws-analytics.eu/api/track'` | The analytics endpoint URL                      |
-| `config.debug`               | `boolean` | `false`                                          | Enable debug logging                            |
-| `config.trackPageViewOnInit` | `boolean` | `true`                                           | Automatically track page view on init           |
-| `config.trackSpaNavigation`  | `boolean` | `true`                                           | Track page views on SPA navigation              |
-| `config.trackClicks`         | `boolean` | `true`                                           | Track clicks on elements with `data-lwsa-event` |
+| Parameter                    | Type      | Default | Description                                     |
+| ---------------------------- | --------- |---------| ----------------------------------------------- |
+| `config.siteId`              | `string`  |         | Your site identifier (required)                 |
+| `config.debug`               | `boolean` | `false` | Enable debug logging                            |
+| `config.trackPageViewOnInit` | `boolean` | `true`  | Automatically track page view on init           |
+| `config.trackSpaNavigation`  | `boolean` | `true`  | Track page views on SPA navigation              |
+| `config.trackClicks`         | `boolean` | `true`  | Track clicks on elements with `data-lwsa-event` |
 
 **Returns:** `LwsAnalyticsInstance` with `trackPageView()`, `trackEvent()`, and `destroy()` methods.
 
