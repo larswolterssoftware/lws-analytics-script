@@ -21,6 +21,7 @@
         "dist",
         "global.d.ts"
     ],
+    "type": "module",
     "standalone": "dist/script.js",
     "scripts": {
         "build": "tsup src/index.ts --format cjs,esm --dts && tsup src/standalone.ts --format iife --minify --out-dir dist && mv dist/standalone.global.js dist/script.js",
